@@ -1,0 +1,20 @@
+{
+  "name": "virtual-dom",
+  "version": "1.0.0",
+  "description": "Learning Virtual DOM by actually implementing it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nzhl/virtual-dom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nzhl/virtual-dom/issues"
+  },
+  "homepage": "https://github.com/nzhl/virtual-dom#readme"
+}
