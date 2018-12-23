@@ -4,7 +4,7 @@
   "description": "Learning Virtual DOM by actually implementing it.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "standard": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/nzhl/virtual-dom/issues"
   },
-  "homepage": "https://github.com/nzhl/virtual-dom#readme"
+  "homepage": "https://github.com/nzhl/virtual-dom#readme",
+  "devDependencies": {
+    "standard": "*"
+  },
+  "dependencies": {}
 }

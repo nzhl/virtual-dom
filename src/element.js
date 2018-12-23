@@ -12,8 +12,7 @@ function Element (tagName, props, children) {
   this.tagName = tagName
   this.props = props
   this.children = children
-  this.key = props.key || "default-key"
-
+  this.key = props.key || 'default-key'
 }
 
 Element.prototype.render = function () {
@@ -34,14 +33,13 @@ Element.prototype.render = function () {
   return el
 }
 
-
 function setAttribute (node, key, value) {
-  // no need to using node.style.cssText 
+  // no need to using node.style.cssText
   // just use setAttribute is the same
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style
   if (key === 'value' &&
     (node.tagName === 'input' || node.tagName === 'textarea')) {
-    //https://stackoverflow.com/a/36581696/5817139
+    // https://stackoverflow.com/a/36581696/5817139
     node.value = value
   } else {
     node.setAttribute(key, value)
