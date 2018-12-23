@@ -1,4 +1,8 @@
 function diff (oldTree, newTree) {
+  // using index to tag each node in the oldTree
+  // then in patch phrase we dfs the oldTree to
+  // do necessary patch for each node according to
+  // the index based patches.
   var index = 0
   var patches = {}
   dfsWalk(oldTree, newTree, index, patches)
@@ -64,6 +68,39 @@ function diffProps (oldNode, newNode) {
   return propsPatches
 }
 
-function diffChildren (oldNode, newNode) {
+function diffChildren (oldChildren, newChildren, index, patches, currentPatches) {
+  var diffs = listDiff(oldChildren, newChildren, 'key')
+
+  // should be the same as the oldChildren
+  // except those children should be deleted
+  // will become null.
+  newChildren = diffs.children
+
+  if (diffs.moves.length !== 0) {
+    // diffs.moves indicates the steps to
+    // convert oldChildren to the new One
+    // children's reorder still belongs to parent's patches
+    currentPatches.push({ type: 'NODE_REORDER', moves: diffs.moves })
+  }
+
+  // check the change inside each children
+  var previousNode = null
+  var currentNodeIndex = index
+  for (var pos in oldChildren) {
+    var oldChild = oldChildren[pos]
+    var newChild = newChildren[pos]
+
+    // calculate current index by sum up all the nodes
+    // that have been visited
+    currentNodeIndex = (previousNode && previousNode.count)
+      ? currentNodeIndex + previousNode.count + 1
+      : currentNodeIndex + 1
+    dfsWalk(oldChild, newChild, currentNodeIndex, patches)
+
+    previousNode = oldChild
+  }
+}
+
+function listDiff () {
 
 }
