@@ -1,3 +1,5 @@
+import listDiff from './list-diff.js'
+
 function diff (oldTree, newTree) {
   // using index to tag each node in the oldTree
   // then in patch phrase we dfs the oldTree to
@@ -14,18 +16,20 @@ function dfsWalk (oldNode, newNode, index, patches) {
 
   if (newNode === null) {
     // node removed, nothing to do
-  } else if (oldNode instanceof String && newNode instanceof String) {
+  } else if (typeof oldNode === 'string' && typeof newNode === 'string') {
     // text node changed
     if (newNode !== oldNode) {
       currentPatches.push({ type: 'TEXT_CHANGE', text: newNode })
     }
-  } else if (oldNode.tagName === newNode.tagNode &&
+  } else if (oldNode.tagName === newNode.tagName &&
     oldNode.key === newNode.key) {
     // same node. Only need to check
     // 1. props
     // 2. children
     var propsPatches = diffProps(oldNode, newNode)
-    currentPatches.push({ type: 'PROPS_CHANGE', props: propsPatches })
+    if (Object.keys(propsPatches).length !== 0) {
+      currentPatches.push({ type: 'PROPS_CHANGE', props: propsPatches })
+    }
 
     diffChildren(oldNode.children, newNode.children, index, patches, currentPatches)
   } else {
@@ -70,7 +74,6 @@ function diffProps (oldNode, newNode) {
 
 function diffChildren (oldChildren, newChildren, index, patches, currentPatches) {
   var diffs = listDiff(oldChildren, newChildren, 'key')
-
   // should be the same as the oldChildren
   // except those children should be deleted
   // will become null.
@@ -101,6 +104,4 @@ function diffChildren (oldChildren, newChildren, index, patches, currentPatches)
   }
 }
 
-function listDiff () {
-
-}
+export default diff

@@ -39,9 +39,6 @@ export default function listDiff (oldList, newList, keyName) {
     } else {
       // a node without key
       // just use a new node (also without key) as placeholder
-      // hence it's hard to reuse the node without key
-      // that's why in React you get a warnning without
-      // specifying a key.
       children.push(newMap.others[j++] || null)
     }
     i++

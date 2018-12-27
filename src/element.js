@@ -10,9 +10,9 @@ export default Element
  */
 function Element (tagName, props, children) {
   this.tagName = tagName
-  this.props = props
-  this.children = children
-  this.key = props.key || 'default-key'
+  this.props = props || {}
+  this.children = children || []
+  this.key = this.props.key
 }
 
 Element.prototype.render = function () {
