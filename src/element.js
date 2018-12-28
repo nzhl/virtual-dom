@@ -13,6 +13,20 @@ function Element (tagName, props, children) {
   this.props = props || {}
   this.children = children || []
   this.key = this.props.key
+
+  // the number of current node's children
+  // excluding current node itself
+
+  // could be useful when doing diff
+  var count = 0
+  for (var i in children) {
+    var child = children[i]
+    if (child instanceof Element) {
+      count += child.count
+    }
+    count++
+  }
+  this.count = count
 }
 
 Element.prototype.render = function () {

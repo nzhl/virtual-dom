@@ -18,9 +18,8 @@
   },
   "homepage": "https://github.com/nzhl/virtual-dom#readme",
   "devDependencies": {
-    "jest": "^23.6.0",
-    "simple-virtual-dom": "^0.1.10",
-    "standard": "*"
+    "standard": "*",
+    "http-server": "*"
   },
   "dependencies": {}
 }
